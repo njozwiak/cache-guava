@@ -3,6 +3,7 @@ package com.xebia.config;
 import com.google.inject.Scopes;
 import com.sun.jersey.guice.JerseyServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import com.xebia.cache.PanierCache;
 import com.xebia.repository.ClientRepository;
 import com.xebia.repository.PanierRepository;
 import com.xebia.resource.ClientResource;
@@ -20,6 +21,7 @@ public class GuiceConfig extends JerseyServletModule {
         bind(PanierRepository.class).in(Scopes.SINGLETON);
         bind(ClientService.class).in(Scopes.SINGLETON);
         bind(PanierService.class).in(Scopes.SINGLETON);
+        bind(PanierCache.class).in(Scopes.SINGLETON);
 
         bind(ClientsResource.class);
         bind(ClientResource.class);
