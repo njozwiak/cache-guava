@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <div id="main" STYLE="float:left;border-style:solid;">
+        <table id="result-client">
+        </table>
+    </div>
+
+    <div>
+        <table id="result-panier">
+        </table>
+    </div>
+
+</body>
+
+
+<script src="scripts/jquery-1.7.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/rest/clients",
+            processData:true,
+            dataType:"json",
+            success:function (data) {
+
+                var tbody = $("#result-client");
+                $.each(data.Client, function (i, item) {
+                    tbody.append('<tr class="result-content"></tr>');
+                    var tr = $('tr:last', tbody);
+                    tr.append('<td class="idClient">' + item.idClient + '</td>');
+                    tr.append('<td class="name" onclick="display('+item.idClient+')">' + item.name + '</td>');
+                });
+
+            },
+            error:function (jqXHR, textStatus, errorThrow) {
+            alert("Error in returned Client JSON");
+            }
+        });
+    });
+
+    function display(idClient) {
+        $("#result-panier").empty();
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/rest/panier/" + idClient,
+            processData:true,
+            dataType:"json",
+            success:function (data) {
+
+                var tbody = $("#result-panier");
+                tbody.append('Client id : ' + idClient);
+                $.each(data .products, function (i, item) {
+                    tbody.append('<tr class="result-panier-content"></tr>');
+                    var tr = $('tr:last', tbody);
+                    tr.append('<td class="idPanier">' + item.id + '</td>');
+                    tr.append('<td class="name">' + item.name + '</a></td>');
+                });
+
+            },
+            error:function (jqXHR, textStatus, errorThrow) {
+                alert("Error in returned Panier JSON");
+            }
+        });
+    }
+
+</script>
+
+</html>
