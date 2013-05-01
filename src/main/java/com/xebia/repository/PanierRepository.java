@@ -17,8 +17,8 @@ public class PanierRepository {
         LOGGER.info("Access to panier repository for id client {}", idClient);
 
         Panier panier = new Panier(1, idClient);
-        panier.addProduct(new Product(1, "livre", "description livre", 10));
-        panier.addProduct(new Product(2, "ordinateur", "description ordinateur", 120));
+        panier.addProduct(new Product(1, "livre", "description livre", idClient * 10));
+        panier.addProduct(new Product(2, "ordinateur", "description ordinateur", idClient * 120));
 
         return panier;
     }

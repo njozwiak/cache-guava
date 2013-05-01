@@ -9,7 +9,7 @@
         </table>
     </div>
 
-    <div>
+    <div style="position: absolute; left: 200px;width: 250px; height: 80px">
         <table id="result-panier">
         </table>
     </div>
@@ -17,7 +17,7 @@
 </body>
 
 
-<script src="scripts/jquery-1.7.1.min.js"></script>
+<script src="scripts/jquery-1.9.1.min.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -57,8 +57,9 @@
                 $.each(data .products, function (i, item) {
                     tbody.append('<tr class="result-panier-content"></tr>');
                     var tr = $('tr:last', tbody);
-                    tr.append('<td class="idPanier">' + item.id + '</td>');
-                    tr.append('<td class="name">' + item.name + '</a></td>');
+                    tr.append('<td class="idPanier" style="width: 10px; margin: auto;">' + item.id + '</td>');
+                    tr.append('<td class="name" style="width: 100px; margin: auto;">' + item.name + '</a></td>');
+                    tr.append('<td class="price" style="width: 20px; margin: auto; text-align:right">' + item.price + '</a></td>');
                 });
 
             },
